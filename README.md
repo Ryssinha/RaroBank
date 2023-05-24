@@ -1,24 +1,18 @@
-# README
+# Raro Bank
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Projeto prático Trabalho final Raro Academy.
 
-Things you may want to cover:
+## Setup inicial
 
-* Ruby version
+Antes de iniciar a aplicação, recomenda-se a execução da seguinte sequência de comandos:
 
-* System dependencies
+```bash
+rvm use 3.2.1
+cd raro_bank
+bundle install
+rails db:create
+rails db:migrate
+rails db:seed
+```
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Para iniciar o servidor, recomenda-se a utilização do comando `./bin/dev`, pois ele garante os assets serão todos devidamente processados.
