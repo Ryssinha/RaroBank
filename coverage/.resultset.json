@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/home/rayssa/raro_academy/projeto_final/raro_bank/spec/models/user_spec.rb": {
+      "/home/icristianosql/Desktop/Repos/Ruby/Raro/raro_bank/spec/models/user_spec.rb": {
         "lines": [
           1,
           null,
@@ -13,10 +13,11 @@
           2,
           2,
           null,
+          null,
           null
         ]
       },
-      "/home/rayssa/raro_academy/projeto_final/raro_bank/spec/rails_helper.rb": {
+      "/home/icristianosql/Desktop/Repos/Ruby/Raro/raro_bank/spec/rails_helper.rb": {
         "lines": [
           null,
           null,
@@ -92,7 +93,7 @@
           null
         ]
       },
-      "/home/rayssa/raro_academy/projeto_final/raro_bank/config/environment.rb": {
+      "/home/icristianosql/Desktop/Repos/Ruby/Raro/raro_bank/config/environment.rb": {
         "lines": [
           null,
           null,
@@ -103,7 +104,7 @@
           1
         ]
       },
-      "/home/rayssa/raro_academy/projeto_final/raro_bank/config/application.rb": {
+      "/home/icristianosql/Desktop/Repos/Ruby/Raro/raro_bank/config/application.rb": {
         "lines": [
           null,
           null,
@@ -131,7 +132,7 @@
           null
         ]
       },
-      "/home/rayssa/raro_academy/projeto_final/raro_bank/config/boot.rb": {
+      "/home/icristianosql/Desktop/Repos/Ruby/Raro/raro_bank/config/boot.rb": {
         "lines": [
           null,
           null,
@@ -141,7 +142,7 @@
           1
         ]
       },
-      "/home/rayssa/raro_academy/projeto_final/raro_bank/config/environments/test.rb": {
+      "/home/icristianosql/Desktop/Repos/Ruby/Raro/raro_bank/config/environments/test.rb": {
         "lines": [
           null,
           null,
@@ -207,7 +208,7 @@
           null
         ]
       },
-      "/home/rayssa/raro_academy/projeto_final/raro_bank/config/initializers/assets.rb": {
+      "/home/icristianosql/Desktop/Repos/Ruby/Raro/raro_bank/config/initializers/assets.rb": {
         "lines": [
           null,
           null,
@@ -225,7 +226,7 @@
           null
         ]
       },
-      "/home/rayssa/raro_academy/projeto_final/raro_bank/config/initializers/content_security_policy.rb": {
+      "/home/icristianosql/Desktop/Repos/Ruby/Raro/raro_bank/config/initializers/content_security_policy.rb": {
         "lines": [
           null,
           null,
@@ -236,41 +237,6 @@
           null,
           null,
           null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ]
-      },
-      "/home/rayssa/raro_academy/projeto_final/raro_bank/config/initializers/filter_parameter_logging.rb": {
-        "lines": [
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          1,
-          null,
-          null
-        ]
-      },
-      "/home/rayssa/raro_academy/projeto_final/raro_bank/config/initializers/inflections.rb": {
-        "lines": [
           null,
           null,
           null,
@@ -290,7 +256,42 @@
           null
         ]
       },
-      "/home/rayssa/raro_academy/projeto_final/raro_bank/config/initializers/permissions_policy.rb": {
+      "/home/icristianosql/Desktop/Repos/Ruby/Raro/raro_bank/config/initializers/filter_parameter_logging.rb": {
+        "lines": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null
+        ]
+      },
+      "/home/icristianosql/Desktop/Repos/Ruby/Raro/raro_bank/config/initializers/inflections.rb": {
+        "lines": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/icristianosql/Desktop/Repos/Ruby/Raro/raro_bank/config/initializers/permissions_policy.rb": {
         "lines": [
           null,
           null,
@@ -306,7 +307,7 @@
           null
         ]
       },
-      "/home/rayssa/raro_academy/projeto_final/raro_bank/spec/factories/user.rb": {
+      "/home/icristianosql/Desktop/Repos/Ruby/Raro/raro_bank/spec/factories/user.rb": {
         "lines": [
           1,
           1,
@@ -316,20 +317,19 @@
           null
         ]
       },
-      "/home/rayssa/raro_academy/projeto_final/raro_bank/config/routes.rb": {
+      "/home/icristianosql/Desktop/Repos/Ruby/Raro/raro_bank/config/routes.rb": {
         "lines": [
           null,
           null,
           1,
           1,
           null,
-          null,
-          null,
+          1,
           null,
           null
         ]
       },
-      "/home/rayssa/raro_academy/projeto_final/raro_bank/app/helpers/application_helper.rb": {
+      "/home/icristianosql/Desktop/Repos/Ruby/Raro/raro_bank/app/helpers/application_helper.rb": {
         "lines": [
           null,
           null,
@@ -337,7 +337,13 @@
           null
         ]
       },
-      "/home/rayssa/raro_academy/projeto_final/raro_bank/spec/support/factory_bot.rb": {
+      "/home/icristianosql/Desktop/Repos/Ruby/Raro/raro_bank/app/helpers/home_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/home/icristianosql/Desktop/Repos/Ruby/Raro/raro_bank/spec/support/factory_bot.rb": {
         "lines": [
           null,
           null,
@@ -346,7 +352,7 @@
           null
         ]
       },
-      "/home/rayssa/raro_academy/projeto_final/raro_bank/app/models/user.rb": {
+      "/home/icristianosql/Desktop/Repos/Ruby/Raro/raro_bank/app/models/user.rb": {
         "lines": [
           1,
           1,
@@ -354,7 +360,7 @@
           null
         ]
       },
-      "/home/rayssa/raro_academy/projeto_final/raro_bank/app/models/application_record.rb": {
+      "/home/icristianosql/Desktop/Repos/Ruby/Raro/raro_bank/app/models/application_record.rb": {
         "lines": [
           null,
           null,
@@ -364,6 +370,6 @@
         ]
       }
     },
-    "timestamp": 1684947004
+    "timestamp": 1685227387
   }
 }
