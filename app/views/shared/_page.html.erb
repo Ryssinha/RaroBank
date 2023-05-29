@@ -1,5 +1,5 @@
 <div class='w-full h-full flex'>
-        <aside class='bg-yellow min-h-screen w-[30vw] p-8 py-6 h-fit flex flex-col bg-[#FF4398]'>
+        <aside class='justify-between min-h-screen w-[30vw] p-8 py-6 h-fit flex flex-col bg-[#FF4398]'>
             <nav class='flex items-center gap-4 justify-between'>
                 <%= image_tag "https://i.ibb.co/b6wS491/raro-bank-logo.png", class: 'w-36' %>
 
@@ -13,11 +13,18 @@
             </nav>
             <div class='flex flex-col gap-6'>
                 <%= render 'shared/cardsinfo', info:'VALOR ATUAL:', value:'R$ 547,00', show_icon: true %>
-                <%= render 'shared/cardsinfo', info:'VALOR ATUAL:', value:'R$ 547,00', show_icon: false %>
-                <%= render 'shared/cardsinfo', info:'VALOR ATUAL:', value:'R$ 547,00', show_icon: false %>
+                <%= render 'shared/cardsinfo', info:'VALOR DEPOSITADO:', value:'R$ 547,00', show_icon: false %>
+                <%= render 'shared/cardsinfo', info:'VALOR RETIRADO:', value:'R$ 547,00', show_icon: false %>
+                <%= render 'shared/cardsinfo', info:'TAXA SELIC a.a:', value:"#{@selic}%", show_icon: false %>
             </div>
+            <button class='bg-[#DA1B6E] transition duration-500 hover:brightness-125 font-semibold py-[0.8rem] rounded-lg px-0'>
+                DEPOSITAR
+            </button>
         </aside>
-        <div class='bg-green-400 w-[70vw] min-h-screen h-fit'>
-            asdasdasd
+        <div class='w-[70vw] min-h-screen h-fit px-2 flex flex-col'>
+            <%= render 'shared/header' %>
+            <div class='h-[90vh]'>
+                <%= yield %>
+            <div>
         </div>
 </div>
