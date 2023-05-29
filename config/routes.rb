@@ -4,6 +4,4 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resources :users
-  get 'selic', to: 'selic#index'
-  
 end
