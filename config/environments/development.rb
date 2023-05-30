@@ -71,4 +71,17 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
+
+
+  host = ENV.fetch('HOST', 'localhost')
+  port = ENV.fetch('PORT', '3000').to_i
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = { address: host, port: 1025 }
+  # rubocop:disable Style/HashSyntax
+  config.action_mailer.default_url_options = { host: host, port: port }
+  # rubocop:enable Style/HashSyntax
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+
 end

@@ -16,3 +16,10 @@ rails db:seed
 ```
 
 Para iniciar o servidor, recomenda-se a utilização do comando `./bin/dev`, pois ele garante os assets serão todos devidamente processados.
+
+Para subir o `MailCatcher` no terminal rode:
+
+```bash
+mailcatcher
+```
+Depois acesse a porta **`http://127.0.0.1:1080/`**.
