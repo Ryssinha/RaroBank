@@ -48,6 +48,8 @@ gem 'bootsnap', require: false
 
 gem 'faraday'
 
+gem 'devise', '~> 4.9.2'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
@@ -70,7 +72,7 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
-
+  gem "byebug", "~> 11.1"
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
 end
@@ -84,3 +86,5 @@ group :test do
   gem 'webdrivers'
   gem 'shoulda-matchers'
 end
+
+
