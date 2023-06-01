@@ -13,6 +13,7 @@ bundle install
 rails db:create
 rails db:migrate
 rails db:seed
+sudo service postgresql start
 ```
 
 Para iniciar o servidor, recomenda-se a utilização do comando `./bin/dev`, pois ele garante os assets serão todos devidamente processados.
