@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_one :administrator
+  belong_to :administrator
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
   validates :name, presence: true
