@@ -14,7 +14,15 @@
 
   <body>
     <main>
-      <%= yield %>
+      <% if user_signed_in? %>
+        <%= render 'shared/page' do %>
+          <%= yield %>
+        <% end %>
+      <% else %>
+        <%= render 'devise/shared/page' do %>
+          <%= yield %>
+        <% end %>
+      <% end %>
     </main>
   </body>
 </html>
