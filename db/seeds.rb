@@ -8,8 +8,6 @@
 #   Character.create(name: "Luke", movie: movies.first)
 puts "iniciando seed"
  FactoryBot.create(:user)
-
-
-
-
+ FactoryBot.create(:classroom)
+ administrator = FactoryBot.create(:administrator, user: FactoryBot.create(:user))
 puts "finalizou seed"

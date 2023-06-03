@@ -1,19 +1,13 @@
 {
   "RSpec": {
     "coverage": {
-      "/home/rayssa/raro_academy/projeto_final/projeto/raro_bank/spec/models/user_spec.rb": {
+      "/home/rayssa/raro_academy/projeto_final/projeto/raro_bank/spec/models/administrator_spec.rb": {
         "lines": [
           1,
           null,
           1,
-          5,
-          null,
           1,
           2,
-          2,
-          2,
-          2,
-          null,
           null,
           null
         ]
@@ -630,6 +624,24 @@
           null
         ]
       },
+      "/home/rayssa/raro_academy/projeto_final/projeto/raro_bank/test/factories/administrators.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null,
+          null
+        ]
+      },
+      "/home/rayssa/raro_academy/projeto_final/projeto/raro_bank/spec/factories/classroom.rb": {
+        "lines": [
+          1,
+          1,
+          2,
+          null,
+          null
+        ]
+      },
       "/home/rayssa/raro_academy/projeto_final/projeto/raro_bank/spec/factories/user.rb": {
         "lines": [
           1,
@@ -649,14 +661,15 @@
           1,
           1,
           null,
+          1,
+          null,
           null
         ]
       },
       "/home/rayssa/raro_academy/projeto_final/projeto/raro_bank/app/models/user.rb": {
         "lines": [
           1,
-          null,
-          null,
+          1,
           1,
           null,
           1,
@@ -699,8 +712,52 @@
           1,
           null
         ]
+      },
+      "/home/rayssa/raro_academy/projeto_final/projeto/raro_bank/app/models/administrator.rb": {
+        "lines": [
+          1,
+          1,
+          null
+        ]
+      },
+      "/home/rayssa/raro_academy/projeto_final/projeto/raro_bank/spec/models/classroom_spec.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          2,
+          null,
+          1,
+          2,
+          null,
+          null
+        ]
+      },
+      "/home/rayssa/raro_academy/projeto_final/projeto/raro_bank/app/models/classroom.rb": {
+        "lines": [
+          1,
+          1,
+          null
+        ]
+      },
+      "/home/rayssa/raro_academy/projeto_final/projeto/raro_bank/spec/models/user_spec.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          5,
+          null,
+          1,
+          2,
+          2,
+          2,
+          2,
+          null,
+          null,
+          null
+        ]
       }
     },
-    "timestamp": 1685416576
+    "timestamp": 1685661286
   }
 }
