@@ -1,6 +1,7 @@
 <main class='bg-gradient w-full h-full flex justify-center items-center'>
   <div class='w-[25rem]'>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "mt-8 space-y-6" }) do |f| %>
+      <%= image_tag "https://i.ibb.co/b6wS491/raro-bank-logo.png", class: 'w-40 mx-auto' %>
       <div class="-space-y-px rounded-md shadow-sm flex flex-col gap-4">
           <%= f.email_field :email, autofocus: true, class: "w-full p-[0.8rem] rounded-xl bg-[#640F46] text-white placeholder-white placeholder-opacity-50", placeholder: "Email" %>
           <%= f.password_field :password, autocomplete: "current-password", class: "w-full p-[0.8rem] rounded-xl bg-[#640F46] text-white placeholder-white placeholder-opacity-50", placeholder: "Senha" %>
@@ -16,18 +17,16 @@
         </div>
 
         <div class="text-sm">
-          <%= link_to "Esqueceu sua senha?", new_user_password_path, class: "text-white font-semibold nimate-duration-500	border-b border-transparent hover:border-white" %>
+          <%= link_to "ESQUECEU SUA SENHA?", new_user_password_path, class: "text-white font-semibold nimate-duration-500	border-b border-transparent hover:border-white" %>
         </div>
       </div>
 
       <div class="flex justify-between">
-        <%= render 'shared/components/button', color: '#DA1B6E', styles: 'w-[48%]' do %>
+        <%= render 'shared/components/button', styles: 'w-[48%] bg-[#DA1B6E]' do %>
             ENTRAR
         <% end %>
 
-        <%= render 'shared/components/button', color: '#DA1B6E', styles: 'w-[48%]' do %>
-            CRIE SUA CONTA
-        <% end %>
+        <%= link_to "Crie sua conta", new_user_registration_path, class: "text-center uppercase transition duration-500 hover:brightness-125 font-semibold py-[0.8rem] rounded-lg px-0 w-[48%] bg-[#DA1B6E]" %>
       </div>
     <% end %>
   </div>
