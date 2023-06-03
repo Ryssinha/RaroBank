@@ -1,9 +1,5 @@
-<div class="mx-auto md:w-2/3 w-full">
-  <div class="flex min-h-screen items-center justify-center bg-gray-100">
-    <div class="w-full max-w-md space-y-8">
-      <div>
-        <h2 class="mt-6 text-center text-2xl font-bold tracking-tight text-black">Inscrever-se</h2>
-      </div>
+<main class='bg-gradient w-full h-full flex justify-center items-center'>
+  <div class='w-[25rem]'>
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
 
@@ -39,8 +35,5 @@
           <%= f.submit "Increver-se" %>
         </div>
       <% end %>
-
-      <%= render "devise/shared/links" %>
-    </div>
   </div>
-</div>
+</main>
