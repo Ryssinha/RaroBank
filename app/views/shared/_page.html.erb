@@ -19,7 +19,7 @@
                 <%= render 'shared/cardsinfo', info:'VALOR RETIRADO:', value:'R$ 547,00', show_icon: false %>
                 <%= render 'shared/cardsinfo', info:'TAXA SELIC a.a:', value:"#{@selic}%", show_icon: false %>
             </div>
-            <%= render 'shared/components/button', color: '#DA1B6E' do %>
+            <%= render 'shared/components/button', styles: 'bg-[#DA1B6E]' do %>
                 DEPOSITAR
             <% end %>
         </aside>
