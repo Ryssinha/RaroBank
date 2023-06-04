@@ -25,4 +25,14 @@
       <% end %>
     </main>
   </body>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var errorElement = document.getElementById("error_explanation");
+      if (errorElement) {
+        var errorList = errorElement.getElementsByTagName("li");
+        const errorsList = Object.values(errorList).map((event) => event.textContent);
+        console.log(errorsList.join("\n"));
+      }
+    });
+  </script>
 </html>
