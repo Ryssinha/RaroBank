@@ -13,18 +13,4 @@ class Balance < ApplicationRecord
   def calculate_current_balance
     self.current_balance = balance_deposited - withdrawn
   end
-
-  private
-
-  def current_balance_calculated?
-    current_balance_calculated || false
-  end
-
-
-  private
-
-  def self.positive_balance
-    where('current_balance > 0')
-  end
 end
-
