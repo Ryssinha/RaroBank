@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_01_171935) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_03_161341) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,6 +19,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_01_171935) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_administrators_on_user_id"
+  end
+
+  create_table "balances", force: :cascade do |t|
+    t.decimal "withdrawn", precision: 8, scale: 2, null: false
+    t.decimal "balance_deposited", precision: 8, scale: 2, null: false
+    t.decimal "current_balance", precision: 8, scale: 2, null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_balances_on_user_id"
   end
 
   create_table "classrooms", force: :cascade do |t|
@@ -47,4 +57,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_01_171935) do
   end
 
   add_foreign_key "administrators", "users"
+  add_foreign_key "balances", "users"
 end
