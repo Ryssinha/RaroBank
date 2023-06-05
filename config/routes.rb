@@ -4,5 +4,12 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resources :classrooms
+
+  resources :balances, only: [:show] do
+    member do
+      post 'deposit'
+      post 'withdraw'
+    end
+  end
 end
 
