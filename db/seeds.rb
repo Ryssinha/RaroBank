@@ -1,14 +1,19 @@
-# frozen_string_literal: true
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
-puts "iniciando seed"
- FactoryBot.create(:user)
- FactoryBot.create(:classroom)
- administrator = FactoryBot.create(:administrator, user: FactoryBot.create(:user))
- FactoryBot.create(:balance)
-puts "finalizou seed"
+require 'json'
+
+json_indexers = File.read(Rails.root.join('db', 'indexers.json'))
+indexers = JSON.parse(json_indexers)['indexers']
+
+puts "Iniciando seed"
+
+indexers.each do |indexer|
+    data = Indexers.send(indexer['method'])
+  
+    begin
+      Fee.create!(name: indexer['name'], value: data.last['valor'], latest_release: data.last['data'])
+      puts "Indexador #{indexer['name']} adicionado com sucesso!"
+    rescue ActiveRecord::RecordInvalid => e
+      puts "#{indexer['name']}: #{e.message}"
+    end
+end
+
+puts "Finalizou seed"
