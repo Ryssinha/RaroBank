@@ -51,9 +51,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_08_032122) do
     t.date "start_date", null: false
     t.date "end_of_term", null: false
     t.decimal "minimum_investment_amount", null: false
-    t.string "index", null: false
+    t.bigint "fee_id"
+    t.string "image_url", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["fee_id"], name: "index_products_on_fee_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -77,4 +79,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_08_032122) do
 
   add_foreign_key "administrators", "users"
   add_foreign_key "balances", "users"
+  add_foreign_key "products", "fees"
 end
