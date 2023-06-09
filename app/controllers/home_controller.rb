@@ -1,6 +1,11 @@
 class HomeController < ApplicationController
   def index
     response = Indexers.get_selic_rate
+    responseb = Indexers.get_cdi_rate
+
+    puts "############################"
+      puts responseb
+    puts "############################"
     @selic = (response.last['valor'].to_f * 30.44).round(2)
   end
 
