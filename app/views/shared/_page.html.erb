@@ -14,14 +14,16 @@
                 </div>
             </nav>
             <div class='flex flex-col gap-6'>
-                <%= render 'shared/cardsinfo', info:'VALOR ATUAL:', value:'R$ 547,00', show_icon: true %>
-                <%= render 'shared/cardsinfo', info:'VALOR DEPOSITADO:', value:'R$ 547,00', show_icon: false %>
-                <%= render 'shared/cardsinfo', info:'VALOR RETIRADO:', value:'R$ 547,00', show_icon: false %>
-                <%= render 'shared/cardsinfo', info:'TAXA SELIC a.a:', value:"#{@selic}%", show_icon: false %>
+                <%= render 'shared/cardsinfo', info: 'VALOR ATUAL:', value: number_to_currency(@balance&.current_balance), show_icon: true %>
+                <%= render 'shared/cardsinfo', info: 'VALOR DEPOSITADO:', value: number_to_currency(@balance&.balance_deposited), show_icon: false %>
+                <%= render 'shared/cardsinfo', info: 'VALOR RETIRADO:', value: number_to_currency(@balance&.withdrawn), show_icon: false %>
+              <%= render 'shared/cardsinfo', info: 'TAXA SELIC a.a:', value: "#{@selic}%", show_icon: false %>
             </div>
-            <%= render 'shared/components/button', styles: 'bg-[#DA1B6E]' do %>
-                DEPOSITAR
-            <% end %>
+                <%= render 'shared/components/button', styles: 'bg-[#DA1B6E]' do %>
+                  <%= turbo_frame_tag 'transfer-link' do %>
+                    <%= link_to "TRANSFERÊNCIA", new_transfer_path, class: "bg-[#DA1B6E] text-white font-bold py-2 px-4 rounded", data: { turbo_frame: 'transfer-link' } %>
+                  <% end %>
+                <% end %>
         </aside>
         <div class='w-[70vw] min-h-screen h-fit px-2 flex flex-col'>
             <%= render 'shared/header' %>
