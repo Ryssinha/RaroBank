@@ -1,0 +1,40 @@
+[
+    {
+      "name": "Precatórios Estaduais",
+      "minimum_investment_amount": 10.00,
+      "image_url": "https://static.peerbr.com/peerbr-v2/web/assets/svgs/products/recebiveisJudiciais.svg",
+      "additional_fee": 10.0
+    },
+    {
+      "name": "Recebíveis Judiciais",
+      "minimum_investment_amount": 10.00,
+      "image_url": "https://static.peerbr.com/peerbr-v2/web/assets/svgs/products/recebiveisJudiciais.svg",
+      "additional_fee": 10.0
+    },
+    {
+      "name": "Precatórios Federais",
+      "minimum_investment_amount": 10.00,
+      "image_url": "https://static.peerbr.com/peerbr-v2/web/assets/svgs/products/recebiveisJudiciais.svg",
+      "additional_fee": 10.0
+    },
+    {
+      "name": "Cotas de Consórcios",
+      "minimum_investment_amount": 10.00,
+      "image_url": "https://static.peerbr.com/peerbr-v2/web/assets/svgs/products/recebiveisJudiciais.svg",
+      "additional_fee": 10.0,
+      "premium": true
+    },
+    {
+      "name": "WillCrypto",
+      "minimum_investment_amount": 15.00,
+      "image_url": "https://static.peerbr.com/peerbr-v2/web/assets/svgs/products/recebiveisJudiciais.svg",
+      "additional_fee": 10.0,
+      "premium": true
+    },
+    {
+      "name": "AndradeCoin",
+      "minimum_investment_amount": 15.00,
+      "image_url": "https://static.peerbr.com/peerbr-v2/web/assets/svgs/products/recebiveisJudiciais.svgg",
+      "additional_fee": 10.0
+    }
+  ]
