@@ -52,8 +52,6 @@ gem 'faraday'
 
 gem 'devise', '~> 4.9.2'
 
-gem 'whenever'
-
 # Use Sass to process CSS
 # gem "sassc-rails"
 
@@ -96,3 +94,4 @@ end
 gem "sidekiq", "~> 7.1"
 
 gem "redis", "~> 5.0"
+gem 'whenever'

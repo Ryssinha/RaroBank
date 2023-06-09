@@ -7,6 +7,34 @@ Rails.application.routes.draw do
   
   resources :classrooms
 
+  resources :balances, only: [:show] do
+    member do
+      post 'deposit'
+      post 'withdraw'
+    end
+  end
+
+  resources :transfers, only: [:show, :new, :create] do
+    get :confirmation, on: :collection
+  end
+
+
+  resources :users do
+    resource :balance, only: [:show] do
+      post :deposit
+      post :withdraw
+    end
+  end
+
+
+  resources :administrators, only: [:index] do
+    collection do
+      post :deposit_all
+    end
+  end
+
+  post '/administrators/deposit', to: 'administrators#deposit', as: :deposit_administrators
+  
   mount Sidekiq::Web => '/jobs'
 end
 

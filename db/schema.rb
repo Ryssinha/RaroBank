@@ -22,9 +22,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_08_032122) do
   end
 
   create_table "balances", force: :cascade do |t|
-    t.decimal "withdrawn", precision: 8, scale: 2, null: false
-    t.decimal "balance_deposited", precision: 8, scale: 2, null: false
-    t.decimal "current_balance", precision: 8, scale: 2, null: false
+    t.decimal "withdrawn", precision: 8, scale: 2, default: "0.0", null: false
+    t.decimal "balance_deposited", precision: 8, scale: 2, default: "0.0", null: false
+    t.decimal "current_balance", precision: 8, scale: 2, default: "0.0", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -35,6 +35,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_08_032122) do
     t.string "name", limit: 255, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "classrooms_users", id: false, force: :cascade do |t|
+    t.bigint "classroom_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["classroom_id", "user_id"], name: "index_classrooms_users_on_classroom_id_and_user_id", unique: true
   end
 
   create_table "fees", force: :cascade do |t|
@@ -58,6 +66,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_08_032122) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["fee_id"], name: "index_products_on_fee_id"
+  end
+
+  create_table "transfers", force: :cascade do |t|
+    t.bigint "sender_id", null: false
+    t.bigint "receiver_id", null: false
+    t.decimal "amount", precision: 8, scale: 2, default: "0.0", null: false
+    t.string "token"
+    t.integer "status", default: 1, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["receiver_id"], name: "index_transfers_on_receiver_id"
+    t.index ["sender_id"], name: "index_transfers_on_sender_id"
   end
 
   create_table "users", force: :cascade do |t|
