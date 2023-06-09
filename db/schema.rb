@@ -47,12 +47,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_08_032122) do
 
   create_table "products", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "punctuation"
-    t.date "start_date", null: false
+    t.integer "punctuation", default: 0
+    t.date "start_date", default: -> { "CURRENT_DATE" }
     t.date "end_of_term", null: false
     t.decimal "minimum_investment_amount", null: false
-    t.bigint "fee_id"
     t.string "image_url", null: false
+    t.boolean "premium", default: false
+    t.float "additional_fee", null: false
+    t.bigint "fee_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["fee_id"], name: "index_products_on_fee_id"
