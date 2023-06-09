@@ -1,8 +1,10 @@
+require 'sidekiq/web'
 
 Rails.application.routes.draw do
   devise_for :users, controllers: { confirmations: 'confirmations' }
   root 'home#index'
-
+  post '/upload_image', to: 'home#upload_image', as: 'upload_image'
+  
   resources :classrooms
 
   resources :balances, only: [:show] do
@@ -32,5 +34,7 @@ Rails.application.routes.draw do
   end
 
   post '/administrators/deposit', to: 'administrators#deposit', as: :deposit_administrators
+  
+  mount Sidekiq::Web => '/jobs'
 end
 

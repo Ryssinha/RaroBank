@@ -1,29 +1,75 @@
-# frozen_string_literal: true
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
-puts "iniciando seed"
- FactoryBot.create(:user)
- FactoryBot.create(:classroom)
- administrator = FactoryBot.create(:administrator, user: FactoryBot.create(:user))
- FactoryBot.create(:balance)
+require 'json'
 
- admin_user = User.create!(
-  name: "Admin User",
-  email: "admin@example.com",
-  cpf: "12345678901",
-  password: "password",
-  password_confirmation: "password",
-  confirmed_at: Time.now
-)
+json_indexers = File.read(Rails.root.join('db', 'indexers.json'))
+data = JSON.parse(json_indexers)
+indexers = data['indexers']
 
-Administrator.create!(user: admin_user)
+json_products = File.read(Rails.root.join('db', 'products.json'))
+products = JSON.parse(json_products)
 
-balance = admin_user.balance
-balance.current_balance = 90000
-balance.save
-puts "finalizou seed"
+json_users = File.read(Rails.root.join('db', 'users.json'))
+users = JSON.parse(json_users)
+
+puts "Iniciando seed"
+
+  #Adicionando indexadores no banco
+  indexers.each do |indexer|
+      data = Indexers.send(indexer['method'])
+      
+      if data.present?
+        begin
+          Fee.create!(name: indexer['name'], value: data.last['valor'], latest_release: data.last['data'])
+          puts "Indexador #{indexer['name']} adicionado com sucesso!"
+        rescue ActiveRecord::RecordInvalid => e
+          puts "#{indexer['name']}: #{e.message}"
+        end
+      else
+        puts "#{indexer[:name]}: Dados não disponíveis"
+      end
+  end
+
+  #Adicionando produtos no banco
+  products.each do |product_data|
+    product_data['end_of_term'] = Date.today.advance(years: 1) + rand(365)
+    product_data['fee'] = Fee.order("RANDOM()").first
+
+    begin
+      Product.create!(product_data)
+      puts "Produto #{product_data['name']} adicionado com sucesso!"
+    rescue ActiveRecord::RecordInvalid => e
+      puts "#{product_data['name']}: #{e.message}"
+    end
+  end
+
+  #Adicionando usuarios no banco
+  users.each do |user_data|
+    User.create!(
+      name: user_data['name'],
+      cpf: user_data['cpf'],
+      email: user_data['email'],
+      password: user_data['password']
+    )
+    puts "Usuário #{user_data['name']} adicionado com sucesso!"
+  rescue ActiveRecord::RecordInvalid => e
+    puts "#{user_data['name']}: #{e.message}"
+  end
+
+  puts "Todos os usuários foram autenticados com sucesso."
+  User.update_all(confirmed_at: Time.now)
+
+  admin_1 = User.find_by_name("Paulo Fernandes")
+  admin_2 = User.find_by_name("Guilherme Andrade")
+
+  puts "Administrador #{admin_1.name} adicionado com sucesso"
+  Administrator.create(user: admin_1)
+
+  puts "Administrador #{admin_2.name} adicionado com sucesso"
+  Administrator.create(user: admin_1)
+
+  puts "100k Pauloeda$ adicionadas com sucesso ao administrador #{admin_1.name}"
+  admin_1.balance.update!(current_balance: 100_000.00)
+
+  puts "100k Pauloeda$ adicionadas com sucesso ao administrador #{admin_2.name}"
+  admin_2.balance.update!(current_balance: 100_000.00)
+
+puts "Finalizou o seed"

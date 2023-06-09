@@ -90,3 +90,8 @@ group :test do
 end
 
 
+
+gem "sidekiq", "~> 7.1"
+
+gem "redis", "~> 5.0"
+gem 'whenever'
