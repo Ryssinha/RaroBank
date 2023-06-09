@@ -3,7 +3,15 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
-  
+  before_action :load_user_balance
+
+  private
+
+  def load_user_balance
+    @balance = current_user&.balance
+  end
+
+
   protected
 
   def configure_permitted_parameters
