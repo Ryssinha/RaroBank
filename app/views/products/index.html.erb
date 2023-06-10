@@ -1,10 +1,10 @@
 <div class="grid grid-cols-3 gap-4">
   <% @products.each do |product| %>
     <div class='h-80 p-2 flex flex-col items-center cards-box relative'>
-      <img src="<%= product.image_url %>" alt="Product Image" class='w-[10.125rem]'>
+      <img src="<%= product.image_url %>" alt="Product Image" class='w-[8.125rem]'>
       <strong class="text-lg text-[#ff4398] font-bold mt-2"><%= product.name %></strong>
-      <p class="text-sm text-[#777777] font-bold mt-2">Rentabilidade: <%= (product.additional_fee + product.fee.value * 365).round(2) %>% a.a</p>
-      <%= render 'shared/components/button', styles: 'bg-[#DA1B6E] w-[90%]' do %>
+      <p class="text-sm text-[#777777] font-bold mt-2 ">Rentabilidade: <%= (product.additional_fee + product.fee.value * 365).round(2) %>% a.a</p>
+      <%= render 'shared/components/button', styles: 'bg-[#DA1B6E] w-[90%] mt-[2.5rem]' do %>
         <p>INVESTIR</p>
       <% end %>
         <% if product.premium? %>
