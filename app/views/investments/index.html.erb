@@ -1,0 +1,7 @@
+<div style='color: red;'>
+  <% @investment.each do |investment| %>
+    <p>Value to Redeem: <%= number_with_precision(investment.value_to_redeem, precision: 2) %></p>
+    <p>Invested Amount: <%= investment.invested_amount %></p>
+    <p>Random: <%= investment.product.fee.value %></p>
+  <% end %>
+</div>
