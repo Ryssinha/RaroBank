@@ -26,13 +26,27 @@
     </main>
   </body>
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      var errorElement = document.getElementById("error_explanation");
-      if (errorElement) {
-        var errorList = errorElement.getElementsByTagName("li");
-        const errorsList = Object.values(errorList).map((event) => event.textContent);
-        console.log(errorsList.join("\n"));
-      }
-    });
+
+  const hideCurrency = () => {
+    const sideBarCurrency = document.querySelectorAll('.currency-class');
+    const sideBareye = document.querySelector('.sidebar-eye');
+    const currentColor = sideBareye.getAttribute('stroke');
+
+    if (currentColor === 'red') {
+      sideBareye.setAttribute('stroke', 'white');
+      sideBarCurrency.forEach(function(elemento) {
+        elemento.dataset.originalValue = elemento.innerText;
+        elemento.innerText = '***';
+      });
+    } else {
+      sideBareye.setAttribute('stroke', 'red');
+      sideBarCurrency.forEach(function(elemento) {
+        if (elemento.dataset.originalValue) {
+          elemento.innerText = elemento.dataset.originalValue;
+          delete elemento.dataset.originalValue;
+        }
+      });
+    }
+  }
   </script>
 </html>
