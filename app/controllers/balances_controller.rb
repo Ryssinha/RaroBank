@@ -57,9 +57,11 @@ class BalancesController < ApplicationController
 
   private
 
-  def check_administrator
+  def authenticate_administrator!
     unless current_user.administrator?
-      redirect_to root_path, alert: 'Você não tem permissão para adicionar saldo.'
+      flash[:alert] = "Acesso negado. Você não é um administrador."
+      redirect_to root_path
     end
   end
+
 end
