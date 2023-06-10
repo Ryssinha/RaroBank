@@ -18,6 +18,10 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
-every '1 * * * *' do
+set :output, "#{path}/log/cron.log"
+set :environment, 'development'
+env :PATH, ENV['PATH']
+
+every 1.minute do
   rake 'fees:update_fee_in_database'
 end

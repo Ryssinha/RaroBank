@@ -1,23 +1,25 @@
-class UpdateFeesValuesAndDate
-    queue_as :orders
-    indexers = [
-        {
-            name: "CDI",
-            method: "get_cdi_rate"
-        },
-        {
-            name: "SELIC",
-            method: "get_selic_rate"
-        },
-        {
-            name: "IPCA",
-            method: "get_ipca_rate"
-        }
-    ]
-        
+class FeeJob < ApplicationJob
+    queue_as :default
+    
     def perform
-        indexers.each do |indexer|
+        @indexers = [
+            {
+                name: "CDI",
+                method: "get_cdi_rate"
+            },
+            {
+                name: "SELIC",
+                method: "get_selic_rate"
+            },
+            {
+                name: "IPCA",
+                method: "get_ipca_rate"
+            }
+        ]
+        @indexers.each do |indexer|
             data = Indexers.send(indexer[:method])
+
+            puts "passou aqui"
 
             if data.present?
                 begin
