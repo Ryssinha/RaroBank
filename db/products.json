@@ -9,7 +9,8 @@
       "name": "Recebíveis Judiciais",
       "minimum_investment_amount": 10.00,
       "image_url": "https://i.ibb.co/LPGykQQ/recebiveis-judiciais.png",
-      "additional_fee": 8.0
+      "additional_fee": 8.0,
+      "premium": true
     },
     {
       "name": "Precatórios Federais",
@@ -21,8 +22,7 @@
       "name": "Cotas de Consórcios",
       "minimum_investment_amount": 10.00,
       "image_url": "https://i.ibb.co/195Hvyj/cotas-de-consorcio.png",
-      "additional_fee": 4.0,
-      "premium": true
+      "additional_fee": 4.0
     },
     {
       "name": "WillCrypto",
