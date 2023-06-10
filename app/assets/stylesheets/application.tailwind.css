@@ -139,3 +139,110 @@ main {
 .control-checkbox input:checked + .control_indicator::before {
   animation-name: s-ripple-dup;
 }
+
+  .table-container {
+    width: 80%;
+    margin: 0 auto;
+    max-height: 500px;
+    overflow: auto;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    color: #000;
+  }
+
+  th {
+    background-color: #ddd;
+  }
+
+  tr:nth-child(even) {
+    background-color: #ccc;
+  }
+
+  h2 {
+    color: #DA1B6E;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    font-size: 36px;
+    font-family: 'Arial', sans-serif;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    text-align: center;
+  }
+
+  .title-row {
+    text-align: center;
+  }
+
+  .title-row h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+
+  .negative-value {
+    color: red;
+  }
+
+  .positive-value {
+    color: green;
+  }
+
+  .alert {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    transform: translateX(100%);
+    width: 300px;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    z-index: 9999;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    line-height: 1.5;
+    animation: slide-in 0.3s forwards;
+  }
+
+  @keyframes slide-in {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  .alert-success {
+    color: #155724;
+  }
+
+  .alert-danger {
+    color: #721c24;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    cursor: pointer;
+    color: #000000;
+  }
+
+  @keyframes slide-out {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
