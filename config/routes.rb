@@ -35,6 +35,9 @@ Rails.application.routes.draw do
 
   post '/administrators/deposit', to: 'administrators#deposit', as: :deposit_administrators
   
+  resources :investments do
+  end
+  
   mount Sidekiq::Web => '/jobs'
 end
 
