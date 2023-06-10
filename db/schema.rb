@@ -54,9 +54,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_10_054951) do
   end
 
   create_table "investments", force: :cascade do |t|
-    t.decimal "invested_amount"
+    t.decimal "invested_amount", precision: 8, scale: 2
     t.date "investment_date"
-    t.decimal "value_to_redeem"
     t.boolean "redeemed", default: false
     t.date "redemption_date"
     t.bigint "user_id", null: false
