@@ -22,6 +22,6 @@ set :output, "#{path}/log/cron.log"
 set :environment, 'development'
 env :PATH, ENV['PATH']
 
-every 1.minute do
+every 1.day do
   rake 'fees:update_fee_in_database'
 end
