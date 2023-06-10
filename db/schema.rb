@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_08_032122) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_10_054951) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -51,6 +51,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_08_032122) do
     t.date "latest_release", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "investments", force: :cascade do |t|
+    t.decimal "invested_amount"
+    t.date "investment_date"
+    t.decimal "value_to_redeem"
+    t.boolean "redeemed", default: false
+    t.date "redemption_date"
+    t.bigint "user_id", null: false
+    t.bigint "product_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_investments_on_product_id"
+    t.index ["user_id"], name: "index_investments_on_user_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -101,5 +115,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_08_032122) do
 
   add_foreign_key "administrators", "users"
   add_foreign_key "balances", "users"
+  add_foreign_key "investments", "products"
+  add_foreign_key "investments", "users"
   add_foreign_key "products", "fees"
 end
