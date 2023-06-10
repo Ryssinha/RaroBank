@@ -17,7 +17,7 @@
                 <%= render 'shared/cardsinfo', info: 'VALOR ATUAL:', value: number_to_currency(@balance&.current_balance), show_icon: true %>
                 <%= render 'shared/cardsinfo', info: 'VALOR DEPOSITADO:', value: number_to_currency(@balance&.balance_deposited), show_icon: false %>
                 <%= render 'shared/cardsinfo', info: 'VALOR RETIRADO:', value: number_to_currency(@balance&.withdrawn), show_icon: false %>
-              <%= render 'shared/cardsinfo', info: 'TAXA SELIC a.a:', value: "#{@selic}%", show_icon: false %>
+                <%= render 'shared/cardsinfo', info: 'TAXA SELIC a.a:', value: "2", show_icon: false %>
             </div>
                 <%= render 'shared/components/button', styles: 'bg-[#DA1B6E]' do %>
                   <%= turbo_frame_tag 'transfer-link' do %>
