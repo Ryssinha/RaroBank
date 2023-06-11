@@ -1,6 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/*
+*= require font-awesome
+*/
+@import "font-awesome";
 
 * {
   padding: 0;
