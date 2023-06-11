@@ -3,6 +3,12 @@ Rails.application.routes.draw do
   root to: redirect('/products')
   get '/products', to: 'products#index'
 
+  resources :products do
+    member do
+      post 'invest'
+    end
+  end
+
   post '/upload_image', to: 'home#upload_image', as: 'upload_image'
   
   resources :classrooms
@@ -14,10 +20,10 @@ Rails.application.routes.draw do
         post :deposit_all
       end
     end
-    resources :classrooms
-    post '/administrators/deposit', to: 'administrators#deposit', as: :deposit_administrators
-    get '/classroom_management', to: 'administrators#classroom_management', as: 'classroom_management'
-    get '/administrator/dashboard', to: 'administrators#dashboard', as: 'admin_dashboard'
+    # resources :classrooms
+    # post '/administrators/deposit', to: 'administrators#deposit', as: :deposit_administrators
+    # get '/classroom_management', to: 'administrators#classroom_management', as: 'classroom_management'
+    # get '/administrator/dashboard', to: 'administrators#dashboard', as: 'admin_dashboard'
   end
 
   resources :investments do
