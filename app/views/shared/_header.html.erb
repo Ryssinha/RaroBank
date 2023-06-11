@@ -3,7 +3,9 @@
         <li style="color: <%= current_page?(products_path) ? '#FF4398' : '' %>; border-bottom: <%= current_page?(products_path) ? '1px solid #FF4398' : 'none' %>;" class='text-black font-semibold cursor-pointer transition duration-500 hover:border-b border-[#FF4398] hover:text-[#FF4398]'>
             <%= link_to "Produtos", products_path %>
         </li>
-        <li class='text-black font-semibold cursor-pointer transition duration-500 hover:border-b border-[#FF4398] hover:text-[#FF4398]'>Carteira</li>
+        <li style="color: <%= current_page?(new_investment_path) || current_page?(investments_path) ? '#FF4398' : '' %>; border-bottom: <%= current_page?(new_investment_path) || current_page?(investments_path) ? '1px solid #FF4398' : 'none' %>;" class='text-black font-semibold cursor-pointer transition duration-500 hover:border-b border-[#FF4398] hover:text-[#FF4398]'>
+            <%= link_to "Investimentos", investments_path %>
+        </li>
         <li class='text-black font-semibold cursor-pointer transition duration-500 hover:border-b border-[#FF4398] hover:text-[#FF4398]'>Extrato</li>
         <li style="color: <%= current_page?(new_transfer_path) ? '#FF4398' : '' %>; border-bottom: <%= current_page?(new_transfer_path) ? '1px solid #FF4398' : 'none' %>;" class='text-black font-semibold cursor-pointer transition duration-500 hover:border-b border-[#FF4398] hover:text-[#FF4398]'>
             <%= link_to "Transferência", new_transfer_path %>
