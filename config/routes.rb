@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { confirmations: 'confirmations' }
-  root 'administrators#dashboard', as: 'administrator_dashboard', constraints: ->(request) { request.env['warden'].user&.administrator? }
+  root to: redirect('/products')
+  get '/products', to: 'products#index'
 
-  # Rotas públicas acessíveis a todos os usuários
-  resources :classrooms, only: [:index, :show]
-
+  post '/upload_image', to: 'home#upload_image', as: 'upload_image'
+  
+  resources :classrooms
+  
   # Rotas protegidas pelo escopo de autenticação do administrador
   authenticate :user, ->(user) { user.administrator? } do
     resources :administrators, only: [:index] do
@@ -13,7 +15,6 @@ Rails.application.routes.draw do
       end
     end
     resources :classrooms
-    root 'administrators#index', constraints: ->(request) { request.env['warden'].user&.administrator? }
     post '/administrators/deposit', to: 'administrators#deposit', as: :deposit_administrators
     get '/classroom_management', to: 'administrators#classroom_management', as: 'classroom_management'
     get '/administrator/dashboard', to: 'administrators#dashboard', as: 'admin_dashboard'

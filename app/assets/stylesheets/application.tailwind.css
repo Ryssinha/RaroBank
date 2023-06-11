@@ -140,6 +140,22 @@ main {
   animation-name: s-ripple-dup;
 }
 
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #620f45;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #DA1B6E;
+}
+
+.cards-box {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
   .table-container {
     width: 80%;
     margin: 0 auto;
