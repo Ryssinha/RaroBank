@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to user_url(@user), notice: "user was successfully created." }
+        format.html { redirect_to user_url(@user), notice: "Usuário criado com sucesso." }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 
   private
 
-    def user_params
-      params.require(:user).permit(:name, :email, :password, :cpf)
-    end
+  def user_params
+    params.require(:user).permit(:name, :email, :password, :cpf)
+  end
 end
