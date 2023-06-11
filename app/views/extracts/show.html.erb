@@ -1,0 +1,40 @@
+<head>
+  <title>Extrato</title>
+</head>
+<body>
+  <div class="title-row">
+    <h2>Extrato</h2>
+  </div>
+
+  <div class="table-container mx-6">
+    <table>
+      <thead>
+        <tr>
+          <th>Tipo</th>
+          <th>Destinatário/Remetente</th>
+          <th>Data e Hora</th>
+          <th>Valor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% (@sent_transfers + @received_transfers + @user.sent_transfers).sort_by(&:created_at).reverse.each do |transfer| %>
+          <% if transfer.sender == current_user %>
+            <tr>
+              <td>Enviada</td>
+              <td><%= transfer.receiver.name %></td>
+              <td><%= transfer.created_at.strftime('%d/%m/%Y %H:%M:%S') %></td>
+              <td class="negative-value">- P$ <%= number_to_currency(transfer.amount, unit: '', precision: 2) %></td>
+            </tr>
+          <% else %>
+            <tr>
+              <td>Recebida</td>
+              <td><%= transfer.sender.name %></td>
+              <td><%= transfer.created_at.strftime('%d/%m/%Y %H:%M:%S') %></td>
+              <td class="positive-value">+ P$ <%= number_to_currency(transfer.amount, unit: '', precision: 2) %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</body>

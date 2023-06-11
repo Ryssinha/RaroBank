@@ -1,4 +1,6 @@
 class Classroom < ApplicationRecord
-    belongs_to :user
-    validates :name, presence: true
+  has_many :administrators
+  has_many :users, through: :administrators
+
+  validates :name, presence: true
 end
