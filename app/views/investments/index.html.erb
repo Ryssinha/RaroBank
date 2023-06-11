@@ -1,0 +1,6 @@
+<div style='color: red;'>
+  <% @investment.each do |investment| %>
+    <p>Invested Amount: <%= investment.invested_amount %></p>
+    <p>Fee value: <%= investment.product.fee.value %></p>
+  <% end %>
+</div>

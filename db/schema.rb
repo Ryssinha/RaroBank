@@ -55,6 +55,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_10_133644) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "investments", force: :cascade do |t|
+    t.decimal "invested_amount", precision: 8, scale: 2
+    t.date "investment_date"
+    t.boolean "redeemed", default: false
+    t.date "redemption_date"
+    t.bigint "user_id", null: false
+    t.bigint "product_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_investments_on_product_id"
+    t.index ["user_id"], name: "index_investments_on_user_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "name", null: false
     t.integer "punctuation", default: 0
@@ -104,5 +117,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_10_133644) do
   add_foreign_key "administrators", "classrooms"
   add_foreign_key "administrators", "users"
   add_foreign_key "balances", "users"
+  add_foreign_key "investments", "products"
+  add_foreign_key "investments", "users"
   add_foreign_key "products", "fees"
 end

@@ -92,6 +92,6 @@ end
 
 
 gem "sidekiq", "~> 7.1"
-
+gem 'font-awesome-rails'
 gem "redis", "~> 5.0"
 gem 'whenever'

@@ -20,6 +20,24 @@ Rails.application.routes.draw do
     get '/administrator/dashboard', to: 'administrators#dashboard', as: 'admin_dashboard'
   end
 
+  resources :investments do
+  end
+  
+  mount Sidekiq::Web => '/jobs'
+  
+  # Rotas protegidas pelo escopo de autenticação do administrador
+  authenticate :user, ->(user) { user.administrator? } do
+    resources :administrators, only: [:index] do
+      collection do
+        post :deposit_all
+      end
+    end
+    resources :classrooms
+    post '/administrators/deposit', to: 'administrators#deposit', as: :deposit_administrators
+    get '/classroom_management', to: 'administrators#classroom_management', as: 'classroom_management'
+    get '/administrator/dashboard', to: 'administrators#dashboard', as: 'admin_dashboard'
+  end
+
   resources :balances, only: [:show] do
     member do
       post 'deposit'
