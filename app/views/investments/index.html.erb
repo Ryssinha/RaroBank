@@ -10,6 +10,9 @@
           <% end %>
         <% end %>
           <img src='<%= investment.product.image_url %>' class='w-20' alt='Image Product'>
+          <% if investment.product.premium? %>
+            <img src="https://i.ibb.co/Wpr4kDx/selo.png" alt="Product Image" class='top-[-10px] right-[-15px] w-[2.5rem] absolute'>
+          <% end %>
           <div class='text-sm'>
             <p class='text-center'>Produto</p>
             <%= investment.product.name %>
