@@ -13,6 +13,6 @@ class TransfersMailer < ApplicationMailer
     @receiver_email = transfer.receiver.email
     @amount = transfer.amount
 
-    mail(to: [@sender_email, @receiver_email], subject: 'Transferência Concluída')
+    mail(to: [@receiver_email], subject: 'Transferência Concluída')
   end
 end
