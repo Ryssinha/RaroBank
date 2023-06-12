@@ -1,8 +1,14 @@
 <section class='flex flex-col gap-2'>
   <% if @investments.any? { |investment| investment.user_id == current_user.id } %>
-    <% @investments.each do |investment| %>
+    <% @investments.sort_by(&:invested_amount).reverse.each do |investment| %>
       <% if investment.user_id == current_user.id %>
-        <div class='bg-[#640F46] flex items-center px-4 py-6 rounded-[0.5rem] justify-between'>
+        <div class='bg-[#640F46] relative flex items-center px-4 py-6 rounded-[0.5rem] justify-between'>
+        <% if investment.redeemed %>
+        <% else %>
+          <%= link_to investment_path(investment), method: :delete, data: { confirm: 'Tem certeza que deseja excluir o investimento?' } do %>
+            <%= image_tag('https://i.ibb.co/JsCnZ8z/vender-investimento.png', class: 'w-[2rem] right-[10px] bottom-[5px] absolute cursor-pointer', alt: 'Sell Image') %>
+          <% end %>
+        <% end %>
           <img src='<%= investment.product.image_url %>' class='w-20' alt='Image Product'>
           <div class='text-sm'>
             <p class='text-center'>Produto</p>
@@ -10,7 +16,7 @@
           </div>
           <div class='text-sm text-center'>
             <p>Valor investido</p>
-            <%= investment.invested_amount %>
+            R$<%= investment.invested_amount %>
           </div>
           <div class='text-sm text-center'>
             <p>Dia do investimento</p>
@@ -29,7 +35,7 @@
           </div>
           <div class='text-sm text-center'>
             <% if investment.redeemed %>
-              <div class='w-[1rem] h-[1rem] bg-red-600 rounded-full active-anim'></div>
+              <div class='w-[1rem] h-[1rem] bg-gray-600 rounded-full active-anim'></div>
             <% else %>
               <div class='w-[1rem] h-[1rem] bg-green-600 rounded-full active-anim'></div>
             <% end %>
