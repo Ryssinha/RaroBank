@@ -2,16 +2,18 @@ class Transfer < ApplicationRecord
   belongs_to :sender, class_name: "User"
   belongs_to :receiver, class_name: "User"
 
-  enum :status, {
+  enum status: {
     pending: 1,
     confirmed: 2
-  }, scopes: true, default: :pending
+  }, _scopes: true, _default: :pending
 
   validates :amount, presence: true, numericality: { greater_than: 0 }
   validates :sender, presence: true
   validate :sufficient_balance, if: :sender
+  validate :token_not_expired
 
   before_create :generate_token
+  before_create :set_expiration
 
   def execute_transfer
     sender_balance = sender.balance || Balance.new(user: sender)
@@ -23,6 +25,10 @@ class Transfer < ApplicationRecord
     end
   end
 
+  def token_expired?
+    expires_at.present? && expires_at < Time.current
+  end
+
   private
 
   def generate_token
@@ -30,7 +36,7 @@ class Transfer < ApplicationRecord
   end
 
   def set_expiration
-    self.expires_at = 5.minutes.from_now
+    self.expires_at = 1.minute.from_now
   end
 
   def sufficient_balance
@@ -41,4 +47,9 @@ class Transfer < ApplicationRecord
     end
   end
 
+  def token_not_expired
+    if self.token.present? && token_expired?
+      errors.add(:base, "Token expirado!")
+    end
+  end
 end
