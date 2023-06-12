@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   post '/upload_image', to: 'home#upload_image', as: 'upload_image'
 
-  resources :classrooms, only: [:index, :show]
+  resources :classrooms
 
 
   authenticate :user, ->(user) { user.administrator? } do
