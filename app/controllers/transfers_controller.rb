@@ -40,15 +40,23 @@ class TransfersController < ApplicationController
     @transfer = Transfer.find_by(token: params[:token])
 
     if @transfer.present?
-      @transfer.status = :confirmed
-      @transfer.execute_transfer
-      @transfer.save
-      TransfersMailer.transfer_notification(@transfer).deliver_now
-      @message = "Transferência confirmada com sucesso!"
+      if @transfer.token_expired?
+        flash.now[:alert] = "Token expirado!"
+        redirect_to new_transfer_path and return
+      else
+        @transfer.status = :confirmed
+        @transfer.execute_transfer
+        @transfer.save
+        TransfersMailer.transfer_notification(@transfer).deliver_now
+        flash.now[:notice] = "Transferência confirmada com sucesso!"
+      end
     else
-      @message = "Transferência não encontrada!"
+      flash.now[:alert] = "Token inválido!"
     end
+
+    render :confirmation
   end
+
 
   def within_transfer_hours?
     current_time = Time.now
