@@ -1,0 +1,68 @@
+<section class='flex items-center justify-center'>
+    <%= form_with(model: @product, url: products_path, local: true) do |form| %>
+    <% if @product.errors.any? %>
+        <div id="error_explanation">
+        <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+        <ul>
+            <% @product.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+        </ul>
+        </div>
+    <% end %>
+    <div class='flex items-center gap-8'>
+        <div class="flex flex-col">
+            <%= form.label :name, class: 'text-black' %>
+            <%= form.text_field :name, class: 'w-full p-[0.8rem] rounded-xl bg-[#DA1B6E] text-white placeholder-white placeholder-opacity-50' %>
+        </div>
+
+        <div class="flex flex-col">
+            <%= form.label :start_date, class: 'text-black' %>
+            <%= form.date_field :start_date, class: 'w-full p-[0.8rem] rounded-xl bg-[#DA1B6E] text-white placeholder-white placeholder-opacity-50' %>
+        </div>    
+    </div>
+
+    <div class='flex items-center gap-8'>
+        <div class="flex flex-col">
+            <%= form.label :end_of_term, class: 'text-black' %>
+            <%= form.date_field :end_of_term, class: 'w-full p-[0.8rem] rounded-xl bg-[#DA1B6E] text-white placeholder-white placeholder-opacity-50' %>
+        </div>
+
+        <div class="flex flex-col">
+            <%= form.label :minimum_investment_amount, class: 'text-black' %>
+            <%= form.number_field :minimum_investment_amount, class: 'w-full p-[0.8rem] rounded-xl bg-[#DA1B6E] text-white placeholder-white placeholder-opacity-50' %>
+        </div>
+    </div>
+
+    <div class='flex items-center gap-8'>
+        <div class="flex flex-col">
+            <%= form.label :image_url, class: 'text-black' %>
+            <%= form.text_field :image_url, class: 'w-full p-[0.8rem] rounded-xl bg-[#DA1B6E] text-white placeholder-white placeholder-opacity-50' %>
+        </div>
+
+        <div class="flex flex-col">
+            <%= form.label :premium, class: 'text-black' %>
+            <%= form.check_box :premium, class: 'w-full p-[0.8rem] rounded-xl bg-[#DA1B6E] text-white placeholder-white placeholder-opacity-50' %>
+        </div>
+    </div>
+
+    <div class='flex items-center gap-8'>
+        <div class="flex flex-col">
+            <%= form.label :additional_fee, class: 'text-black' %>
+            <%= form.number_field :additional_fee, class: 'w-full p-[0.8rem] rounded-xl bg-[#DA1B6E] text-white placeholder-white placeholder-opacity-50' %>
+        </div>
+
+        <div class="flex flex-col">
+            <%= form.label :fee_id, class: 'text-black' %>
+            <%= form.collection_select :fee_id, Fee.all, :id, :name, prompt: true, class: 'w-full p-[0.8rem] rounded-xl bg-[#DA1B6E] text-white placeholder-white placeholder-opacity-50' %>
+        </div>
+    </div>
+
+    <div class="actions">
+        <%= form.submit %>
+        <span class="text-sm text-white ml-2">Texto adicional</span>
+    </div>
+    <% end %>
+
+    <%= link_to "Back", products_path %>
+</section>
