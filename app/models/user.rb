@@ -3,7 +3,7 @@ class User < ApplicationRecord
   has_one :administrator
   has_many :sent_transfers, class_name: "Transfer", foreign_key: "sender_id"
   has_many :received_transfers, class_name: "Transfer", foreign_key: "receiver_id"
-  has_many :classroom_users
+  belongs_to :classroom, optional: true
   has_many :classrooms, through: :classroom_users
   has_and_belongs_to_many :investments
 

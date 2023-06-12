@@ -12,7 +12,7 @@ users = JSON.parse(json_users)
 
 puts "Iniciando seed"
 
-  #Adicionando indexadores no banco
+#Adicionando indexadores no banco
   indexers.each do |indexer|
       data = Indexers.send(indexer['method'])
       
@@ -60,11 +60,14 @@ puts "Iniciando seed"
   admin_1 = User.find_by_name("Paulo Fernandes")
   admin_2 = User.find_by_name("Guilherme Andrade")
 
+  puts "RaroRuby Class criada com sucesso"
+  Classroom.create(name: "RaroRubyClass")
+
   puts "Administrador #{admin_1.name} adicionado com sucesso"
-  Administrator.create(user: admin_1)
+  Administrator.create(user: admin_1, classroom: Classroom.first)
 
   puts "Administrador #{admin_2.name} adicionado com sucesso"
-  Administrator.create(user: admin_1)
+  Administrator.create(user: admin_2, classroom: Classroom.first)
 
   puts "100k Pauloeda$ adicionadas com sucesso ao administrador #{admin_1.name}"
   admin_1.balance.update!(current_balance: 100_000.00)

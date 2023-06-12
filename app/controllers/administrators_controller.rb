@@ -19,7 +19,7 @@ class AdministratorsController < ApplicationController
     @classroom = Classroom.find_by(id: params[:classroom_id])
 
     if @user && @classroom
-      Administrator.create(user: @user, classroom: @classroom)
+      @user.update!(classroom: @classroom)
       redirect_to classroom_path(params[:classroom_id]), notice: "Usuário adicionado à turma com sucesso."
     else
       @users = User.all
@@ -57,12 +57,8 @@ class AdministratorsController < ApplicationController
     if amount.positive?
       User.all.each do |user|
         balance = user.balance || Balance.new(user: user)
-        balance.withdrawn ||= 0
-        balance.balance_deposited ||= 0
-        balance.current_balance ||= 0
         balance.save! unless balance.persisted?
         balance.deposit(amount)
-
         Transfer.create(sender: current_user, receiver: user, amount: amount)
       end
       redirect_to administrators_path, notice: "Saldo atualizado com sucesso para todos os usuários."
