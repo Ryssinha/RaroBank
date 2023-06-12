@@ -12,9 +12,3 @@ class EndOfTermJob < ApplicationJob
     end
   end
 end
-
-# investment = Investment.find(params[:id])
-
-# if investment.product.end_of_term == Date.today
-#   investment.update(redeemed: true)
-# end
