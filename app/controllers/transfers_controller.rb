@@ -11,15 +11,20 @@ class TransfersController < ApplicationController
       @transfer = Transfer.new(transfer_params)
       @transfer.sender = current_user
       receiver = find_receiver
-
+  
       if receiver && !validate_receiver
-        @transfer.receiver = receiver
-        Transfer.transaction do
-          @transfer.save!
+        if sufficient_balance?(@transfer.amount)
+          @transfer.receiver = receiver
+          Transfer.transaction do
+            @transfer.save!
+          end
+          TransfersMailer.token_notification(@transfer).deliver_now
+          flash[:notice] = "Transferência criada com sucesso."
+          redirect_to transfer_path(@transfer)
+        else
+          flash.now[:alert] = "Saldo insuficiente para realizar a transferência."
+          render :new
         end
-        TransfersMailer.token_notification(@transfer).deliver_now
-        flash[:notice] = "Transferência criada com sucesso."
-        redirect_to transfer_path(@transfer)
       else
         @contacts = contacts
         message = validate_receiver ? "Foram inseridos destinatários distintos" : "Destinatário inválido."
@@ -77,6 +82,10 @@ class TransfersController < ApplicationController
   end
 
   private
+
+  def sufficient_balance?(amount)
+    current_user.balance.current_balance >= amount
+  end
 
   def transfer_params
     params.require(:transfer).permit(:amount)
