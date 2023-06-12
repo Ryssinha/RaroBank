@@ -15,16 +15,20 @@ class AdministratorsController < ApplicationController
   end
 
   def add_user_to_classroom
-    @user = User.find(params[:user_id])
-    @classroom = Classroom.find(params[:classroom_id])
+    @user = User.find_by(id: params[:user_id])
+    @classroom = Classroom.find_by(id: params[:classroom_id])
 
     if @user && @classroom
       Administrator.create(user: @user, classroom: @classroom)
       redirect_to classroom_path(params[:classroom_id]), notice: "Usuário adicionado à turma com sucesso."
     else
-      redirect_to administrators_path, alert: "Falha ao adicionar usuário à turma."
+      @users = User.all
+      @classrooms = Classroom.all
+      flash.now[:alert] = "Falha ao adicionar usuário à turma, verifique se todos os campos foram preenchidos."
+      render 'administrators/classroom_management'
     end
   end
+
 
   def classroom_management
     @classrooms = Classroom.all
