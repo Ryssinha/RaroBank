@@ -4,6 +4,7 @@
   </h1>
 
   <div style="display: flex; justify-content: space-between; margin-left: 65px;">
+      <%= render 'shared/flash_messages' %>
     <div style=" margin-right: 20px;">
       <%= form_with(url: deposit_administrators_path, method: :post) do |f| %>
         <div style="display: flex; justify-content: flex-start;">
