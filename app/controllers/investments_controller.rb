@@ -19,6 +19,7 @@ class InvestmentsController < ApplicationController
     current_user.balance.update!(current_balance: user_balance - @investment.invested_amount)
     
     if @investment.save
+      current_user.investments << @investment
       redirect_to products_path, notice: 'Investimento criado com sucesso.'
     else
       render :new, alert: 'Erro ao criar o investimento.'
