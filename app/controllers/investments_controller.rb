@@ -17,7 +17,7 @@ class InvestmentsController < ApplicationController
     @investment.investment_date = Date.today
     user_balance = current_user.balance.current_balance
     current_user.balance.update!(current_balance: user_balance - @investment.invested_amount)
-
+    
     if @investment.save
       redirect_to products_path, notice: 'Investimento criado com sucesso.'
     else
@@ -39,9 +39,12 @@ class InvestmentsController < ApplicationController
   end
 
   def destroy
-    @investment = Investment.find(params[:id])
-    @investment.destroy
-    redirect_to investments_path, notice: 'Investimento excluído com sucesso.'
+    investment = Investment.find(params[:id])
+    user_balance = current_user.balance.current_balance
+    value_to_redeem = investment.invested_amount
+    current_user.balance.update!(current_balance: user_balance + value_to_redeem)
+    investment.update!(redeemed: true)
+    redirect_to products_path, notice: 'Saque efetuado com sucesso!!'
   end
 
   private
