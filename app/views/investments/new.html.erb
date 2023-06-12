@@ -24,7 +24,7 @@
 
     <div class='flex flex-col w-[48%]'>
         <%= form.label :product_id, "Produto", class: 'text-black font-bold' %>
-        <%= form.collection_select :product_id, Product.all, :id, :name, { selected: s_value.to_i }, { disabled: true } %>
+        <%= form.collection_select :product_id, Product.all, :id, :name, { selected: s_value.to_i }, class: 'pointer-events-none' %>
     </div>
   </div>
 
