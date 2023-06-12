@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+  before_action :authenticate_administrator!, only: %i[new show create edit update destroy]
+
     def index
       @products = Product.all
     end
@@ -8,14 +10,12 @@ class ProductsController < ApplicationController
     end
   
     def create
-        @product = Product.new(product_params)
-        @investment = Investment.new(investment_params.merge(user: current_user, product: @product))
-        
-        if @product.save && @investment.save
-            redirect_to products_path, notice: 'Produto e investimento criados com sucesso.'
-        else
-            render :new, alert: 'Erro ao criar o produto e o investimento.'
-        end
+      @product = Product.new(product_params)
+      if @product.save
+        redirect_to @product, notice: "Product created successfully."
+      else
+        render :new
+      end
     end
   
     def show
@@ -45,6 +45,13 @@ class ProductsController < ApplicationController
   
     def product_params
       params.require(:product).permit(:name, :punctuation, :start_date, :end_of_term, :minimum_investment_amount, :image_url, :premium, :additional_fee, :fee_id)
+    end
+
+    def authenticate_administrator!
+      unless current_user.administrator?
+        flash[:alert] = "Acesso negado. Você não é um administrador."
+        redirect_to root_path
+      end
     end
   end
   

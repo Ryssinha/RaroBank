@@ -12,7 +12,6 @@
         <li class='text-black font-semibold cursor-pointer transition duration-500 <%= current_page?(user_extract_path(user_id: current_user.id)) ? "hover:border-b border-[#FF4398] hover:text-[#FF4398]" : "" %>'>
         <%= link_to 'Extrato', user_extract_path(user_id: current_user.id), class: 'hover:no-underline', style: "color: #{current_page?(user_extract_path(user_id: current_user.id)) ? '#FF4398' : ''}; border-bottom: #{current_page?(user_extract_path(user_id: current_user.id)) ? '1px solid #FF4398' : 'none'};" %>
         </li>
-        <li class='text-black font-semibold cursor-pointer transition duration-500 hover:border-b border-[#FF4398] hover:text-[#FF4398]'>Dúvidas</li>
         <% if current_user.administrator? %>
             <li class='text-black font-semibold cursor-pointer transition duration-500 hover:border-b border-[#FF4398] hover:text-[#FF4398]'>
                 <%= link_to 'Painel', admin_dashboard_path, class: 'hover:no-underline' %>

@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { confirmations: 'confirmations' }
   root to: redirect('/products')
-  get '/products', to: 'products#index'
 
+  resources :products do
+  end
 
   post '/upload_image', to: 'home#upload_image', as: 'upload_image'
 
