@@ -5,4 +5,9 @@ FactoryBot.define do
     email { Faker::Internet.email }
     password { Faker::Internet.password(min_length: 6) }
   end
+  trait :administrator do
+    after(:create) do |user|
+      create(:administrator, user: user)
+    end
+  end
 end
