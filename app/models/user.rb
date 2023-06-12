@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :received_transfers, class_name: "Transfer", foreign_key: "receiver_id"
   has_many :classroom_users
   has_many :classrooms, through: :classroom_users
+  has_and_belongs_to_many :investments
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable

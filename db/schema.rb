@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_10_133644) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_12_042204) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -68,6 +68,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_10_133644) do
     t.index ["user_id"], name: "index_investments_on_user_id"
   end
 
+  create_table "investments_users", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "investment_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["investment_id"], name: "index_investments_users_on_investment_id"
+    t.index ["user_id"], name: "index_investments_users_on_user_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "name", null: false
     t.integer "punctuation", default: 0
@@ -119,5 +128,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_10_133644) do
   add_foreign_key "balances", "users"
   add_foreign_key "investments", "products"
   add_foreign_key "investments", "users"
+  add_foreign_key "investments_users", "investments"
+  add_foreign_key "investments_users", "users"
   add_foreign_key "products", "fees"
 end
