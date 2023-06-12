@@ -277,3 +277,36 @@ main {
       transform: translateX(100%);
     }
   }
+  select {
+    background-color: #DA1B6E;
+    color: white;
+    font-weight: bold;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FFFFFF' width='24' height='24'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    border-radius: 5px;
+    outline: none;
+    padding-right: 24px;
+  }
+
+  option {
+    font-weight: bold;
+  }
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+input[type="number"]::-webkit-inner-spin-button::after {
+  content: "\25B2";
+  display: block;
+  color: #000;
+}
+
+input[type="number"]::-webkit-inner-spin-button::before {
+  content: "\25BC";
+  display: block;
+  color: #000;
+}
