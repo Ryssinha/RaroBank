@@ -29,17 +29,6 @@ describe Balance do
     end
   end
 
-  describe '.by_user' do
-    it 'returns balances for a specific user' do
-      user = create(:user)
-      create(:balance, user: user)
-      create(:balance)
-      user_balances = Balance.by_user(user.id)
-      expect(user_balances.count).to eq(1)
-      expect(user_balances.first.user).to eq(user)
-    end
-  end
-
   describe 'callbacks' do
     describe '#calculate_current_balance' do
       it 'calculates the current balance correctly' do

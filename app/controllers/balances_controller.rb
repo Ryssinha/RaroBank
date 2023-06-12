@@ -9,10 +9,12 @@ class BalancesController < ApplicationController
       @balance_deposited = @balance.balance_deposited
       @withdrawn = @balance.withdrawn
     else
-      redirect_to root_path, alert: 'Você não tem permissão para visualizar esse saldo.'
+      flash[:alert] = 'Você não tem permissão para visualizar esse saldo.'
+      redirect_to root_path
     end
   rescue ActiveRecord::RecordNotFound
-    redirect_to root_path, alert: 'Saldo não encontrado.'
+    flash[:alert] = 'Saldo não encontrado.'
+    redirect_to root_path
   end
 
   def deposit
@@ -26,9 +28,11 @@ class BalancesController < ApplicationController
       @balance_deposited = @balance.balance_deposited
       @withdrawn = @balance.withdrawn
 
-      redirect_to @balance, notice: "Saldo atualizado com sucesso. Saldo atual: #{'%.2f' % @current_balance}"
+      flash[:notice] = "Saldo atualizado com sucesso. Saldo atual: #{'%.2f' % @current_balance}"
+      redirect_to @balance
     else
-      redirect_to @balance, alert: 'Falha ao adicionar saldo. Certifique-se de fornecer um valor positivo.'
+      flash[:alert] = 'Falha ao adicionar saldo. Certifique-se de fornecer um valor positivo.'
+      redirect_to @balance
     end
   end
 
@@ -43,11 +47,14 @@ class BalancesController < ApplicationController
       @balance_deposited = @balance.balance_deposited
       @withdrawn = @balance.withdrawn
 
-      redirect_to @balance, notice: "Saque realizado com sucesso. Saldo atual: #{'%.2f' % @current_balance}"
+      flash[:notice] = "Saque realizado com sucesso. Saldo atual: #{'%.2f' % @current_balance}"
+      redirect_to @balance
     elsif @balance.user == current_user && amount > @balance.current_balance
-      redirect_to @balance, alert: 'Valor do saque excede o saldo atual.'
+      flash[:alert] = 'Valor do saque excede o saldo atual.'
+      redirect_to @balance
     else
-      redirect_to @balance, alert: 'Falha ao efetuar o saque. Certifique-se de fornecer um valor positivo e menor ou igual ao saldo atual.'
+      flash[:alert] = 'Falha ao efetuar o saque. Certifique-se de fornecer um valor positivo e menor ou igual ao saldo atual.'
+      redirect_to @balance
     end
   end
 
@@ -63,5 +70,4 @@ class BalancesController < ApplicationController
       redirect_to root_path
     end
   end
-
 end

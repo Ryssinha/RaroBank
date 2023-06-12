@@ -18,11 +18,12 @@ class TransfersController < ApplicationController
           @transfer.save!
         end
         TransfersMailer.token_notification(@transfer).deliver_now
-        redirect_to transfer_path(@transfer), notice: "Transferência criada com sucesso."
+        flash[:notice] = "Transferência criada com sucesso."
+        redirect_to transfer_path(@transfer)
       else
         @contacts = contacts
         message = validate_receiver ? "Foram inseridos destinatários distintos" : "Destinatário inválido."
-        @transfer.errors.add(:base, message)
+        flash.now[:alert] = message
         render :new
       end
     else
@@ -30,6 +31,7 @@ class TransfersController < ApplicationController
       @transfer = Transfer.new(transfer_params)
       @transfer.sender = current_user
       @transfer.errors.add(:base, "Transferência não pode ser realizada neste momento. A próxima transferência estará disponível em #{next_transfer_hour}.")
+      flash.now[:alert] = "Transferência não pode ser realizada neste momento. A próxima transferência estará disponível em #{next_transfer_hour}."
       render :new
     end
   end
