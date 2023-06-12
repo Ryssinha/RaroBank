@@ -29,6 +29,10 @@ class Transfer < ApplicationRecord
     self.token = rand(100000..999999)
   end
 
+  def set_expiration
+    self.expires_at = 5.minutes.from_now
+  end
+
   def sufficient_balance
     sender_balance = sender.balance || Balance.new(user: sender)
 
@@ -36,4 +40,5 @@ class Transfer < ApplicationRecord
       errors.add(:amount, "Saldo insuficiente para realizar a transferência.")
     end
   end
+
 end
