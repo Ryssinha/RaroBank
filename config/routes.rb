@@ -37,7 +37,10 @@ Rails.application.routes.draw do
 
   resources :transfers, only: [:show, :new, :create] do
     get :confirmation, on: :collection
+    post :confirmation, on: :collection
   end
+
+  post '/transfer/confirmation', to: 'transfers#confirmation', as: 'confirmation_transfer'
 
   resources :users do
     resource :balance, only: [:show] do
