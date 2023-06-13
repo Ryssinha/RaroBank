@@ -31,7 +31,7 @@ gem uninstall thin
 gem install mailcatcher --pre
 ```
 ## Descrição do Projeto
-Este projeto consiste em uma plataforma de cadastro e investimento em Pauloeda$, uma moeda digital fictícia. A plataforma oferece uma experiência agradável ao usuário final, com design de telas harmonioso e cores atraentes.
+O projeto Raro Academy tem como objetivo mudar a vida das pessoas por meio da tecnologia, oferecendo cursos modernos que preparam os alunos para ingressar de forma imersiva no mercado com tecnologias de ponta. A duração média das aulas é de 2 horas, porém o instrutor Paulo frequentemente excede esse tempo de forma desequilibrada. O tempo é valioso e os alunos exigiram um pagamento da Raro Academy pelo tempo excedido pelo professor. Foi então que o Raro Bank surgiu: para cada minuto excedido por Paulo em aula, serão distribuídas Pauloedas para os alunos daquela turma. Essas moedas digitais servirão para adquirir investimentos na plataforma do Raro Bank, permitindo que os alunos rentabilizem suas Pauloedas. Além disso, os alunos também poderão realizar transferências e consultar o extrato. Com as Pauloedas, eles também poderão adquirir WillCrypto e AndradeCoin.
 
 ## Requisitos Acessórios
 - Recuperação de Senha
