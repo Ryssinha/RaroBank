@@ -45,8 +45,6 @@ class TransfersController < ApplicationController
       end
       TransfersMailer.token_notification(@transfer).deliver_now
       redirect_to transfer_path(@transfer)
-      #flash.now[:alert] = "Transferência não pode ser realizada neste momento. A próxima transferência estará disponível em #{next_transfer_hour}."
-
     end
   end
 
@@ -54,7 +52,7 @@ class TransfersController < ApplicationController
 
     @transfer = Transfer.find_by(token: params[:token])
 
-    if @transfer.present? && (4..5).include?(@transfer.created_at.wday)
+    if @transfer.present? && (1..5).include?(@transfer.created_at.wday)
       if @transfer.token_expired?
         flash.now[:alert] = "Token expirado!"
         redirect_to new_transfer_path and return
@@ -65,7 +63,7 @@ class TransfersController < ApplicationController
         TransfersMailer.transfer_notification(@transfer).deliver_now
         flash.now[:notice] = "Transferência confirmada com sucesso!"
       end
-    elsif @transfer.present? && !(4..5).include?(@transfer.created_at.wday)
+    elsif @transfer.present? && !(1..5).include?(@transfer.created_at.wday)
       if @transfer.token_expired?
         flash.now[:alert] = "Token expirado!"
         redirect_to new_transfer_path and return
@@ -74,8 +72,6 @@ class TransfersController < ApplicationController
         @transfer.save
         flash.now[:alert] = "Transferencia fora do horario comercial ela sera concluida no dia #{next_transfer_hour}."
       end
-    else
-      #flash.now[:alert] = "Token inválido!"
     end
 
     render :confirmation
@@ -84,7 +80,7 @@ class TransfersController < ApplicationController
 
   def within_transfer_hours?
     current_time = Time.now
-    current_time.strftime("%H:%M") >= "08:00" && current_time.strftime("%H:%M") <= "23:00" && (4..5).include?(current_time.wday)
+    current_time.strftime("%H:%M") >= "08:00" && current_time.strftime("%H:%M") <= "18:00" && (1..5).include?(current_time.wday)
   end
 
   def next_transfer_hour

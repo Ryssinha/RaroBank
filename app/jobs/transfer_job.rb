@@ -18,6 +18,6 @@ class TransferJob < ApplicationJob
 
   def within_transfer_hours?
     current_time = Time.now
-    current_time.strftime("%H:%M") >= "08:00" && current_time.strftime("%H:%M") <= "23:00" && (1..5).include?(current_time.wday)
+    current_time.strftime("%H:%M") >= "08:00" && current_time.strftime("%H:%M") <= "18:00" && (1..5).include?(current_time.wday)
   end
 end

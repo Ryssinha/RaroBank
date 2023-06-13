@@ -36,7 +36,7 @@ class Transfer < ApplicationRecord
   end
 
   def set_expiration
-    self.expires_at = 5.minute.from_now
+    self.expires_at = 1.minute.from_now
   end
 
   def sufficient_balance
