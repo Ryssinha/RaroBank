@@ -5,7 +5,7 @@ class Transfer < ApplicationRecord
   enum status: {
     pending: 1,
     confirmed: 2
-  }, _scopes: true, _default: :pending
+  }
 
   validates :amount, presence: true, numericality: { greater_than: 0 }
   validates :sender, presence: true
@@ -41,7 +41,6 @@ class Transfer < ApplicationRecord
 
   def sufficient_balance
     sender_balance = sender.balance || Balance.new(user: sender)
-
     if amount > sender_balance.current_balance
       errors.add(:amount, "Saldo insuficiente para realizar a transferência.")
     end

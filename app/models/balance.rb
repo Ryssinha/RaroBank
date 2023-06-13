@@ -11,7 +11,7 @@ class Balance < ApplicationRecord
   after_save :calculate_current_balance
 
   def calculate_current_balance
-    self.current_balance = balance_deposited - withdrawn
+    self.current_balance = current_balance - withdrawn
   end
 
   def withdraw(amount)

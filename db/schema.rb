@@ -97,7 +97,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_12_132654) do
     t.bigint "receiver_id", null: false
     t.decimal "amount", precision: 8, scale: 2, default: "0.0", null: false
     t.string "token"
-    t.integer "status", default: 1, null: false
+    t.integer "status", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "expires_at"

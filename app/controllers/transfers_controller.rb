@@ -1,5 +1,6 @@
 class TransfersController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_transfer, only: [:show]
 
   def new
     @transfer = Transfer.new
@@ -11,10 +12,11 @@ class TransfersController < ApplicationController
       @transfer = Transfer.new(transfer_params)
       @transfer.sender = current_user
       receiver = find_receiver
-  
+
       if receiver && !validate_receiver
         if sufficient_balance?(@transfer.amount)
           @transfer.receiver = receiver
+          @transfer.status = :pending
           Transfer.transaction do
             @transfer.save!
           end
@@ -32,31 +34,44 @@ class TransfersController < ApplicationController
         render :new
       end
     else
+      receiver = find_receiver
       @contacts = contacts
       @transfer = Transfer.new(transfer_params)
       @transfer.sender = current_user
-      @transfer.errors.add(:base, "Transferência não pode ser realizada neste momento. A próxima transferência estará disponível em #{next_transfer_hour}.")
-      flash.now[:alert] = "Transferência não pode ser realizada neste momento. A próxima transferência estará disponível em #{next_transfer_hour}."
-      render :new
+      @transfer.receiver = receiver
+      @transfer.status = :pending
+      Transfer.transaction do
+        @transfer.save!
+      end
+      TransfersMailer.token_notification(@transfer).deliver_now
+      redirect_to transfer_path(@transfer)
     end
   end
 
   def confirmation
+
     @transfer = Transfer.find_by(token: params[:token])
 
-    if @transfer.present?
+    if @transfer.present? && (1..5).include?(@transfer.created_at.wday)
       if @transfer.token_expired?
         flash.now[:alert] = "Token expirado!"
         redirect_to new_transfer_path and return
       else
-        @transfer.status = :confirmed
         @transfer.execute_transfer
-        @transfer.save
+        @transfer.status = :confirmed
+        @transfer.save!
         TransfersMailer.transfer_notification(@transfer).deliver_now
         flash.now[:notice] = "Transferência confirmada com sucesso!"
       end
-    else
-      flash.now[:alert] = "Token inválido!"
+    elsif @transfer.present? && !(1..5).include?(@transfer.created_at.wday)
+      if @transfer.token_expired?
+        flash.now[:alert] = "Token expirado!"
+        redirect_to new_transfer_path and return
+      else
+        @transfer.status = :pending
+        @transfer.save
+        flash.now[:alert] = "Transferencia fora do horario comercial ela sera concluida no dia #{next_transfer_hour}."
+      end
     end
 
     render :confirmation
@@ -65,7 +80,7 @@ class TransfersController < ApplicationController
 
   def within_transfer_hours?
     current_time = Time.now
-    current_time.strftime("%H:%M") >= "08:00" && current_time.strftime("%H:%M") <= "23:00" && (1..5).include?(current_time.wday)
+    current_time.strftime("%H:%M") >= "08:00" && current_time.strftime("%H:%M") <= "18:00" && (1..5).include?(current_time.wday)
   end
 
   def next_transfer_hour
@@ -96,7 +111,7 @@ class TransfersController < ApplicationController
   end
 
   def transfer_params
-    params.require(:transfer).permit(:amount)
+    params.require(:transfer).permit(:amount, :status)
   end
 
   def find_receiver
@@ -121,5 +136,15 @@ class TransfersController < ApplicationController
 
   def contacts
     current_user.transferable_contacts
+  end
+
+  private
+
+  def set_transfer
+    @transfer = Transfer.find(params[:id])
+    unless @transfer.sender == current_user || @transfer.receiver == current_user
+      flash[:alert] = "Acesso não autorizado."
+      redirect_to root_path
+    end
   end
 end

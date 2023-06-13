@@ -32,3 +32,7 @@ end
 every 1.day, at: '8:00 am' do
   rake 'fees:redeem_balance_at_the_end_of_the_date'
 end
+
+every 1.day, at: '8:00 am' do
+  runner "TransferJob.perform_now"
+end
